@@ -24,8 +24,8 @@ shinyServer(function(session, input, output) {
   # })
   
   output$dtData <- renderDataTable({
-    productdata <- product_list$Product.Name[product_list$Sub.Category == input$subproduct]
-    DT::datatable(product_list %>% filter(product_list$Category == input$mainproduct) %>% 
-                    select(everything()))
+    #productdata <- product_list$Product.Name[product_list$Sub.Category == input$subproduct]
+    product_list_reactive <- product_list %>% filter(product_list$Category == input$mainproduct) %>% select(everything())
+    product_list_reactive %>% filter(product_list$Sub.Category == input$subproduct) %>% select(everything())
   })
 })
